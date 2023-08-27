@@ -40,28 +40,29 @@ routes.route('/search').get(async (req, res) => {
   }
 
   const embeddedSearchTerms = await createEmbedding(term);
-
   const records = await collection.aggregate([
     {
       $search: {
-        // index: 'semantic_search_books',
         knnBeta: {
           vector: embeddedSearchTerms,
           path: "textEmbedding",
-          k: 5,
+          k: 20,
         }
       }
     },
     {
       $project: {
         title: 1,
-        thumbnail: 1,
         description: 1,
-        author: 1,
+        authors: 1,
+        genres: 1,
         average_rating: 1,
-        score: { $meta: "searchScore" },
+        ratings_count: 1,
+        thumbnail: 1,
+        score: {
+          $meta: "searchScore",
+        }
       }
-
     }
   ]).toArray();
 

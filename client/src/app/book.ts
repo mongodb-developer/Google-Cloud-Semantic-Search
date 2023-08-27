@@ -1,11 +1,11 @@
 export interface Book {
     title: string;
-    author: string;
-    // coverURL: string;
+    authors: string;
     thumbnail: string;
     isbn: string;
     genres: string;
-    average_rating: number;
     description: string;
-    score: number;
+    average_rating?: number;
+    ratings_count?: number;
+    score?: number;
 }

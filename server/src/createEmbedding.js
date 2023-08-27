@@ -1,6 +1,5 @@
 export default async function createEmbedding(query) {
-  // Replace with the URL of your Google Cloud Function
-  const url = `https://us-central1-atlas-ai-demos.cloudfunctions.net/generate-text-embeddings`;
+  const url = process.env.EMBEDDING_ENDPOINT;
   const body = JSON.stringify({
     text: query
   });

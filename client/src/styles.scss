@@ -24,26 +24,6 @@ h1, h2, h3 {
     display: block;
 }
 
-.book-card {
-    max-width: 350px;
-    min-height: 760px;
-    margin: 0 50px 30px 0;
-}
-
-.book-card-wrapper {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}
-
-.book-title {
-    font-family: 'Niramit Bold', sans-serif !important;
-    overflow: hidden;
-    height: 70px;
-}
-
 .cropped {
     object-fit: cover;
     margin: 10px 0;

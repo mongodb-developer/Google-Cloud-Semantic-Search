@@ -4,7 +4,6 @@ import './loadEnvironmentVariables.js';
 import './databaseConnection.js';
 
 import booksRoutes from './routes/books.js';
-import moviesRoutes from './routes/movies.js';
 
 import express from 'express';
 import cors from 'cors';
@@ -16,7 +15,6 @@ app.use(cors());
 app.use(express.json());
 
 app.use('/books', booksRoutes);
-app.use('/movies', moviesRoutes);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
