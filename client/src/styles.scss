@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: "Euclid Circular A", Roboto, "Helvetica Neue", sans-serif;
+    background: #fafafa;
+}
+
+h1, h2, h3 {
+    font-family: "MongoDB Value Serif";
+}
+
+.center {
+    text-align: center;
+}
+
+.content-wrapper {
+    padding: 20px 70px;
+    display: block;
+}
+
+.book-card {
+    max-width: 350px;
+    min-height: 760px;
+    margin: 0 50px 30px 0;
+}
+
+.book-card-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.book-title {
+    font-family: 'Niramit Bold', sans-serif !important;
+    overflow: hidden;
+    height: 70px;
+}
+
+.cropped {
+    object-fit: cover;
+    margin: 10px 0;
+}
+
+.img-link {
+    cursor: pointer;
+}
+
+.text-label {
+    font-weight: bold;
+}
+
+.cdk-overlay-container {
+    margin-top: 4px;
+}

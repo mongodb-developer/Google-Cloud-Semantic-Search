@@ -1,0 +1,37 @@
+
+.primary-header {
+    background: #023430;
+    color: #fff;
+    padding: 105px 0 85px 12%;
+    margin: -20px 0 50px 0;
+
+    h1 {
+        font-family: 'MongoDB Value Serif';
+        font-weight: normal;
+        font-size: 64px;
+        line-height: 72px;
+    }
+
+    h2 {
+        font-size: 25px;
+        line-height: 32px;
+        font-weight: lighter;
+    }
+
+    h3 {
+        font-size: 22px;
+    }
+
+    @media only screen and (max-width: 400px) {
+        padding: 35px;
+
+        h1 {
+            font-size: 45px;
+            text-align: center;
+        }
+
+        h2 {
+            display: none;
+        }
+    }
+}
