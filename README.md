@@ -140,3 +140,6 @@ Follow the instructions below to run the demo locally.
 
 1. Open the browser at `localhost:4200` and find books using the power of vector search!
 
+## Disclaimer
+
+Use at your own risk; not a supported MongoDB product
