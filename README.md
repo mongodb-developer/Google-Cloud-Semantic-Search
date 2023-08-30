@@ -59,7 +59,7 @@ Follow the instructions below to run the demo locally.
 1. Enable the Vertex AI and Cloud Functions APIs.
 
 1. Deploy a public 2nd generation Google Cloud Function with the following implementation:
-    - [Generate embeddings](./google-cloud-functions/generate-embeddings/)
+    - [Generate embeddings](./google-cloud-functions/embeddings/)
 
     Replace the `PROJECT_ID` and `LOCATION` placeholders before deploying the function. If you have the [`gcloud` CLI](https://cloud.google.com/sdk/docs/install) installed, run the following deployment command.
 
