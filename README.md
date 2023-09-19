@@ -32,12 +32,15 @@ Follow the instructions below to run the demo locally.
 
 1. Complete the [security quickstart](https://www.mongodb.com/docs/atlas/security/quick-start/?utm_campaign=devrel&utm_source=cross-post&utm_medium=cta&utm_content=gc-vector-search-demo&utm_term=stanimira.vlaeva).
 
-1. Add your [connection string](https://www.mongodb.com/docs/atlas/tutorial/connect-to-your-cluster/?utm_campaign=devrel&utm_source=cross-post&utm_medium=cta&utm_content=gc-vector-search-demo&utm_term=stanimira.vlaeva) to `prepare-data/.env`. Make sure to replace the placeholders with credentials of the database user you created in the security quickstart.
+1. Add your [connection string](https://www.mongodb.com/docs/atlas/tutorial/connect-to-your-cluster/?utm_campaign=devrel&utm_source=cross-post&utm_medium=cta&utm_content=gc-vector-search-demo&utm_term=stanimira.vlaeva) to `prepare-data/.env`.   
+   Make sure to replace the placeholders with credentials of the database user you created in the security quickstart.
 
     **prepare-data/.env**
     ```
     ATLAS_URI="<your-connection-string>"
     ```
+
+    > Note that you will have to create the file `.env` in the `prepare-data` folder.
 
 1. Execute `mongoimport` to load the `books.csv` dataset into your database. Replace the placeholder with your own connection string.
 
@@ -61,14 +64,17 @@ Follow the instructions below to run the demo locally.
 1. Deploy a public 2nd generation Google Cloud Function with the following implementation:
     - [Generate embeddings](./google-cloud-functions/embeddings/)
 
-    Replace the `PROJECT_ID` and `LOCATION` placeholders before deploying the function. If you have the [`gcloud` CLI](https://cloud.google.com/sdk/docs/install) installed, run the following deployment command.
+    Replace the `PROJECT_ID` and `LOCATION` placeholders in the file [google-cloud-functions/embeddings/main.py](google-cloud-functions/embeddings/main.py) before deploying the function.
+   > Note: The `LOCATION` parameter defines the region where the cloud function will run, make sure this region supports *VertexAI Model Garden*. `europe-west1` does not.
+   
+    If you have the [`gcloud` CLI](https://cloud.google.com/sdk/docs/install) installed, run the following deployment command.
 
     ```sh
     gcloud functions deploy generate-embeddings \
       --region=us-central1 \
       --gen2 \
       --runtime=python311 \
-      --source=./google-cloud-functions/generate-embeddings/ \
+      --source=./google-cloud-functions/embeddings/ \
       --entry-point=generate_embeddings \
       --trigger-http \
       --allow-unauthenticated
