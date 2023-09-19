@@ -19,7 +19,7 @@ routes.route('/').get(async (req, res) => {
     },
     {
       $project: {
-        textEmbedding: 0
+        text_embedding: 0
       }
     }
   ]).toArray();
@@ -45,7 +45,7 @@ routes.route('/search').get(async (req, res) => {
       $search: {
         knnBeta: {
           vector: embeddedSearchTerms,
-          path: "textEmbedding",
+          path: "text_embedding",
           k: 20,
         }
       }
