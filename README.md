@@ -108,7 +108,7 @@ Follow the instructions below to run the demo locally.
     {
         "mappings": {
             "fields": {
-                "textEmbedding": {
+                "text_embedding": {
                     "type": "knnVector",
                     "dimensions": 768,
                     "similarity": "euclidean"
