@@ -22,7 +22,7 @@ try {
 // const collection = db.collection("embedded_movies");
 
 const db = conn.db("library");
-const collection = db.collection("books_smaller_dataset");
+const collection = db.collection("books");
 
 export {
   db,
