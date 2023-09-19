@@ -1,7 +1,7 @@
 export default async function createEmbedding(query) {
   const url = process.env.EMBEDDING_ENDPOINT;
   const body = JSON.stringify({
-    text: query
+    text: [query]
   });
 
   let response = await fetch(url, {
