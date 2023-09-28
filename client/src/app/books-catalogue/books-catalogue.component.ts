@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BooksService } from '../books.service';
 import { Observable, of } from 'rxjs';
 import { Book } from '../book';
+import { BookView } from '../book-view';
 
 @Component({
   selector: 'app-books-catalogue',
@@ -9,7 +10,7 @@ import { Book } from '../book';
   styleUrls: ['./books-catalogue.component.scss']
 })
 export class BooksCatalogueComponent implements OnInit {
-  books$: Observable<Book[]>;
+  books$: Observable<BookView[]>;
 
   constructor(private booksService: BooksService) {
   }
@@ -18,7 +19,7 @@ export class BooksCatalogueComponent implements OnInit {
     this.books$ = this.booksService.list();
   }
 
-  updateItems(items: Book[]) {
+  updateItems(items: BookView[]) {
     this.books$ = of(items);
   }
 }

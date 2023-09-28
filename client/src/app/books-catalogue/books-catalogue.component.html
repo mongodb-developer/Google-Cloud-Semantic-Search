@@ -2,9 +2,9 @@
 
 <div class="book-card-wrapper">
     <mat-card class="book-card" *ngFor="let book of books$ | async">
-        <img class="img-link cropped book-thumbnail"
+        <img class="img-link cropped book-cover"
             onerror="this.onerror=null; this.src='http://lgimages.s3.amazonaws.com/gc-md.gif'"
-            width="128" height="216" mat-card-image [src]="book.thumbnail" [alt]="book.title" />
+            width="128" height="216" mat-card-image [src]="book.cover" [alt]="book.title" />
 
         <mat-card-header class="book-card-header">
             <mat-card-title class="book-card-title">
@@ -16,13 +16,11 @@
 
         <mat-card-content class="book-card-content">
           <div class="book-details">
-            <span *ngIf="book.average_rating" class="book-rating">{{ book.average_rating }} ⭐ {{ book.ratings_count | number }} reviews</span>
             <span *ngIf="book.score"><b>Relevance score: </b>{{ book.score }}</span>
-            <span *ngIf="book.genres">{{ book.genres }}</span>
           </div>
 
           <div>
-              <p class="book-description">{{ book.description }}</p>
+              <p class="book-synopsis" [innerHTML]="book.synopsis"></p>
           </div>
         </mat-card-content>
     </mat-card>

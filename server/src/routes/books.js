@@ -53,12 +53,10 @@ routes.route('/search').get(async (req, res) => {
     {
       $project: {
         title: 1,
-        description: 1,
+        synopsis: 1,
         authors: 1,
         genres: 1,
-        average_rating: 1,
-        ratings_count: 1,
-        thumbnail: 1,
+        cover: 1,
         score: {
           $meta: "searchScore",
         }

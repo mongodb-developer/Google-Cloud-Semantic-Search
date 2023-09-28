@@ -6,8 +6,6 @@ This is a demo of vector search using MongoDB Atlas and Google Cloud. The datase
 
 1. [Node.js](https://nodejs.org/) LTS.
 
-1. [`mongoimport`](https://www.mongodb.com/docs/database-tools/installation/installation/?utm_campaign=devrel&utm_source=cross-post&utm_medium=cta&utm_content=gc-vector-search-demo&utm_term=stanimira.vlaeva) for importing the dataset.
-
 ## Setup
 
 Follow the instructions below to run the demo locally.
@@ -42,18 +40,13 @@ Follow the instructions below to run the demo locally.
 
     > Note that you will have to create the file `.env` in the `prepare-data` folder.
 
-1. Execute `mongoimport` to load the `books.csv` dataset into your database. Replace the placeholder with your own connection string.
+1. Run the script for importing the dataset into your database.
 
     ```sh
-    mongoimport \
-        --uri="<your-connection-string>" \
-        --db=library \
-        --collection=books \
-        --type=csv --headerline \
-        --file="./books.csv"
+    node ./prepare-data/import-data.js
     ```
 
-1. Navigate to your MongoDB Atlas database deployment and verify that the dataset is loaded successfully.
+1. Navigate to your MongoDB Atlas database deployment and verify that the data is loaded successfully.
 
 ### Generate embeddings
 
@@ -74,7 +67,7 @@ Follow the instructions below to run the demo locally.
       --region=us-central1 \
       --gen2 \
       --runtime=python311 \
-      --source=./google-cloud-functions/embeddings/ \
+      --source=./google-cloud-functions/generate-embeddings/ \
       --entry-point=generate_embeddings \
       --trigger-http \
       --allow-unauthenticated
@@ -91,12 +84,12 @@ Follow the instructions below to run the demo locally.
 1. Run the embeddings generation script.
 
     ```sh
-    node ./create-embeddings.js
+    node ./prepare-data/create-embeddings.js
     ```
 
     > Note that Vertex AI has a limitation for generating 600 embeddings per minute. If you're getting 403 errors, wait for a minute and rerun the script. Repeat until all documents are 'vectorized'.
 
-1. Go back to your MongoDB Atlas project and open the deployed database cluster. Verify that the `library.books` collection has a new `text_embedding` field containing a multi-dimensional vector.
+1. Go back to your MongoDB Atlas project and open the deployed database cluster. Verify that the `bookstore.books` collection has a new `text_embedding` field containing a multi-dimensional vector.
 
 1. Navigate to the `search` tab to build a vector search index.
 

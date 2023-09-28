@@ -3,6 +3,7 @@ import { BooksService } from '../books.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { filter, debounceTime, distinctUntilChanged, switchMap, Observable } from 'rxjs';
 import { Book } from '../book';
+import { BookView } from '../book-view';
 
 @Component({
   selector: 'app-search-bar',
@@ -10,8 +11,8 @@ import { Book } from '../book';
   styleUrls: ['./search-bar.component.scss']
 })
 export class SearchBarComponent {
-  @Output() itemsFound = new EventEmitter<Book[]>();
-  itemOptions: Observable<Book[]>;
+  @Output() itemsFound = new EventEmitter<BookView[]>();
+  itemOptions: Observable<BookView[]>;
 
   searchForm = this.fb.group({
     query: ['', Validators.required],

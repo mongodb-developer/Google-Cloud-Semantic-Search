@@ -18,10 +18,8 @@ try {
   console.error(e);
   process.exit();
 }
-// const db = conn.db("sample_mflix");
-// const collection = db.collection("embedded_movies");
 
-const db = conn.db("library");
+const db = conn.db("bookstore");
 const collection = db.collection("books");
 
 export {

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Book } from './book';
+import { map } from 'rxjs';
+import { BookView } from './book-view';
 
 const URL = 'http://localhost:5000';
 
@@ -15,7 +17,11 @@ export class BooksService {
       limit = 12;
    }
 
-    return this.http.get<Book[]>(`${URL}/books?limit=${limit}`);
+    return this.http.get<Book[]>(`${URL}/books?limit=${limit}`)
+      .pipe(
+        map(books => books.map(book => new BookView(book)))
+      );
+
   }
 
   search(query: string, limit = 4) {
@@ -25,6 +31,9 @@ export class BooksService {
 
     const result = this.http.get<Book[]>(`${URL}/books/search?term=${query}&limit=${limit}`);
 
-    return result;
+    return result
+      .pipe(
+        map(books => books.map(book => new BookView(book)))
+      );
   }
 }
