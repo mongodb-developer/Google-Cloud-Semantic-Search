@@ -55,9 +55,9 @@ Follow the instructions below to run the demo locally.
 1. Enable the Vertex AI and Cloud Functions APIs.
 
 1. Deploy a public 2nd generation Google Cloud Function with the following implementation:
-    - [Generate embeddings](./google-cloud-functions/embeddings/)
+    - [Generate embeddings](./google-cloud-functions/generate-embeddings/)
 
-    Replace the `PROJECT_ID` and `LOCATION` placeholders in the file [google-cloud-functions/embeddings/main.py](google-cloud-functions/embeddings/main.py) before deploying the function.
+    Replace the `PROJECT_ID` and `LOCATION` placeholders in the file [google-cloud-functions/generate-embeddings/main.py](google-cloud-functions/generate-embeddings/main.py) before deploying the function.
    > Note: The `LOCATION` parameter defines the region where the cloud function will run, make sure this region supports *VertexAI Model Garden*. `europe-west1` does not.
    
     If you have the [`gcloud` CLI](https://cloud.google.com/sdk/docs/install) installed, run the following deployment command.
