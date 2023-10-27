@@ -4,7 +4,8 @@ import { Book } from './book';
 import { map } from 'rxjs';
 import { BookView } from './book-view';
 
-const URL = 'http://localhost:5000';
+const backendPort = '5000';
+const URL = `${location.protocol}//${location.hostname.replace('-4200', `-${backendPort}`)}${location.port ? `:${backendPort}` : ''}`;
 
 @Injectable({
   providedIn: 'root'
