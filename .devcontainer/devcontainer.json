@@ -17,8 +17,7 @@
   },
   "portsAttributes": {
     "4200": {
-      "label": "Client",
-      "onAutoForward": "openPreview"
+      "label": "Client"
     },
     "5000": {
       "label": "Server"
