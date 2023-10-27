@@ -29,6 +29,10 @@ routes.route('/').get(async (req, res) => {
 
 routes.route('/search').get(async (req, res) => {
   let limit = req?.query?.limit || 12;
+  if (typeof limit === 'string') {
+    limit = Number(limit);
+  }
+
   if (!limit || limit > 100) {
     limit = 12;
   }
@@ -39,30 +43,6 @@ routes.route('/search').get(async (req, res) => {
     return;
   }
 
-  const embeddedSearchTerms = await createEmbedding(term);
-  const records = await collection.aggregate([
-    {
-      $search: {
-        knnBeta: {
-          vector: embeddedSearchTerms,
-          path: "text_embedding",
-          k: 20,
-        }
-      }
-    },
-    {
-      $project: {
-        title: 1,
-        synopsis: 1,
-        authors: 1,
-        genres: 1,
-        cover: 1,
-        score: {
-          $meta: "searchScore",
-        }
-      }
-    }
-  ]).toArray();
-
-  res.json(records);
+  // TODO: Implement search
+  return [];
 });
