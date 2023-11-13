@@ -131,7 +131,7 @@ Follow the instructions below to run the demo locally.
 
 1. In the new window, navigate to the `client` directory.
 
-1. Install the dependices and run the project.
+1. Install the dependencies and run the project.
 
     ```
     npm install && npm start
