@@ -30,11 +30,8 @@ const getMultiModalEmbeddings = async ({ text, imageURL }) => {
     instances: [helpers.toValue(instance)],
   };
 
-  console.dir(instance);
-
   const response = await predictionServiceClient.predict(request);
   const prediction = helpers.fromValue(response[0].predictions[0]);
-  console.dir(prediction);
 
   return prediction;
 }
@@ -49,9 +46,6 @@ const getBase64Image = async (url) => {
 
 functions.http('getEmbeddings', async (req, res) => {
   const { text, imageURL } = req.body;
-
-  console.log(text, imageURL);
-  debugger;
 
   if (!text && !imageURL) {
     return res.status(400).send(new Error('You need to provide "text" and/or "imageURL" in the request body'));
