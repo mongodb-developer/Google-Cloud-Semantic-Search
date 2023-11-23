@@ -59,8 +59,9 @@ async function vectorizeBooks() {
 async function vectorizeData(cursor, collection, fieldsToEmbed, embeddingFieldName) {
 
   let promises = [];
+  let counter = 1;
 
-  while (cursor.hasNext()) {
+  while (!!(await cursor.hasNext())) {
     // Run embedding requests in batches
     let docsToVectorize = [];
     for (let i = 0; i < 200; i++) {
@@ -76,15 +77,18 @@ async function vectorizeData(cursor, collection, fieldsToEmbed, embeddingFieldNa
         }
       }
 
-      promises.push(
-        vectorizeDocuments(docsToVectorize, collection, fieldsToEmbed, embeddingFieldName)
-      );
+      if (docsToVectorize.length) {
+        promises.push(
+          vectorizeDocuments(docsToVectorize, collection, fieldsToEmbed, embeddingFieldName)
+        );
+      }
     }
 
-    console.log("Vectorizing batch");
+    console.log(`Vectorizing batch No ${counter}`);
     await Promise.all(promises);
 
     promises = [];
+    counter++;
   }
 }
 
