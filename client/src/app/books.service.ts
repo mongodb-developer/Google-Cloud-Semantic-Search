@@ -25,14 +25,15 @@ export class BooksService {
 
   }
 
-  search(query: string, limit = 4) {
-    if (limit > 50) {
-      limit = 4;
-    }
+  search(query: string) {
+    return this.http.get<Book[]>(`${URL}/books/search?term=${query}`)
+      .pipe(
+        map(books => books.map(book => new BookView(book)))
+      );
+  }
 
-    const result = this.http.get<Book[]>(`${URL}/books/search?term=${query}&limit=${limit}`);
-
-    return result
+  searchByImage(query: string) {
+    return this.http.get<Book[]>(`${URL}/books/search-by-image?url=${query}`)
       .pipe(
         map(books => books.map(book => new BookView(book)))
       );

@@ -50,9 +50,18 @@ async function vectorizeBooks() {
       $match: {
         vectorizedBooks: { $eq: [] } // Filters out documents with no match in vectorizedBooks
       }
+    },
+    {
+      $project: {
+        _id: 1,
+        title: 1,
+        synopsis: 1,
+        genres: 1,
+        authors: 1,
+        cover: 1,
+      }
     }
-  ])
-
+  ]);
 
   await vectorizeData(cursor);
 }
@@ -71,7 +80,7 @@ async function vectorizeData(cursor) {
     }
 
     console.log(`Vectorizing batch No ${counter}`);
-    const vectorizedDocuments = (await Promise.all(promises)).flat(1);
+    const vectorizedDocuments = (await Promise.all(promises)).filter(document => !!document).flat(1);
 
     console.log(`Inserting batch No ${counter}`);
     try {
@@ -97,6 +106,8 @@ function vectorizeDocuments(document) {
         .map((field) => document[field] || "")
         .map((text) => Array.isArray(text) ? text.join(", ") : text)
         .join(" ")
+        .replace(/(<([^>]+)>)/gi, "") // remove html tags
+        .replace(/(\r\n|\n|\r)/gm, " ") // remove line breaks
         .substring(0, 1000);
 
       const imageURL = document[IMAGE_FIELD_TO_EMBED];

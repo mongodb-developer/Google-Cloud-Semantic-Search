@@ -2,7 +2,6 @@ import { Component, EventEmitter, Output } from '@angular/core';
 import { BooksService } from '../books.service';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { filter, debounceTime, distinctUntilChanged, switchMap, Observable } from 'rxjs';
-import { Book } from '../book';
 import { BookView } from '../book-view';
 
 @Component({
@@ -15,7 +14,8 @@ export class SearchBarComponent {
   itemOptions: Observable<BookView[]>;
 
   searchForm = this.fb.group({
-    query: ['', Validators.required],
+    query: [''],
+    imageURL: ['']
   });
 
   constructor(
@@ -27,14 +27,28 @@ export class SearchBarComponent {
         this.itemsFound.next(items)
       }
     );
+
+    this.searchByImage(this.searchForm.controls.imageURL).subscribe(
+      items => {
+        this.itemsFound.next(items)
+      }
+    );
   }
 
   private search(formControl: FormControl<any>) {
     return formControl.valueChanges.pipe(
       filter(text => text!.length > 1),
-      debounceTime(250),
+      debounceTime(750),
       distinctUntilChanged(),
       switchMap(searchTerm => this.booksService.search(searchTerm!)),
+    );
+  }
+
+  private searchByImage(formControl: FormControl<any>) {
+    return formControl.valueChanges.pipe(
+      filter(url => url!.length > 6),
+      distinctUntilChanged(),
+      switchMap(searchTerm => this.booksService.searchByImage(searchTerm!)),
     );
   }
 }

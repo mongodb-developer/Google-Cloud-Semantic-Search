@@ -21,8 +21,10 @@ try {
 
 const db = conn.db("bookstore");
 const collection = db.collection("books");
+const vectorizedCollection = db.collection("vectorizedBooks");
 
 export {
   db,
-  collection
+  collection,
+  vectorizedCollection
 }
