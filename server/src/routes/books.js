@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { collection, vectorizedCollection } from '../databaseConnection.js';
 import getEmbedding from '../createEmbedding.js';
-import createMultiModalEmbedding from '../createMultimodalEmbedding.js';
+import createMultiModalEmbedding from '../createMultiModalEmbedding.js';
 
 const routes = Router();
 export default routes;
