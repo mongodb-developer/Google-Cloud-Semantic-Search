@@ -57,7 +57,6 @@ async function vectorizeBooks() {
 }
 
 async function vectorizeData(cursor, collection, fieldsToEmbed, embeddingFieldName) {
-
   let promises = [];
   let counter = 1;
 
@@ -67,7 +66,7 @@ async function vectorizeData(cursor, collection, fieldsToEmbed, embeddingFieldNa
     for (let i = 0; i < 200; i++) {
       docsToVectorize = [];
       
-      // VertexAI allows you to generate 5 embeddings with one API call
+      // Vertex AI allows you to generate 5 embeddings with one API call
       for (let j = 0; j < 5; j++) {
         try {
           const document = await cursor.next();
