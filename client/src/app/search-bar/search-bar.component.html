@@ -12,5 +12,13 @@
             <mat-icon matSuffix>search</mat-icon>
         </mat-form-field>
 
-    </form>
+   </form>
+
+    <img
+        [src]="searchForm.controls.imageURL.value"
+        *ngIf="searchForm.controls.imageURL.value"
+        width="150px"
+        heigth="200px"
+        class="image-preview"
+        alt="Image preview" />
 </div>
