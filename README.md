@@ -57,8 +57,8 @@ Follow the instructions below to run the demo locally.
 1. Deploy a public 2nd generation Google Cloud Function with the following implementation:
     - [Generate embeddings](./google-cloud-functions/generate-embeddings/)
 
-    Replace the `PROJECT_ID` and `LOCATION` placeholders in the file [google-cloud-functions/generate-embeddings/main.py](google-cloud-functions/generate-embeddings/main.py) before deploying the function.
-   > Note: The `LOCATION` parameter defines the region where the cloud function will run, make sure this region supports *VertexAI Model Garden*. `europe-west1` does not.
+    Replace the `PROJECT_ID` and `LOCATION` placeholders in the file [google-cloud-functions/generate-embeddings/main.py](google-cloud-functions/generate-embeddings/main.py) before deploying the function. Remember to also update the Entry Point to _generate_embeddings_.    
+   > Note: The `LOCATION` parameter defines the region where the cloud function will run, make sure this region supports *VertexAI Model Garden*. `europe-west1` does not. 
    
     If you have the [`gcloud` CLI](https://cloud.google.com/sdk/docs/install) installed, run the following deployment command.
 
@@ -91,23 +91,22 @@ Follow the instructions below to run the demo locally.
 
 1. Go back to your MongoDB Atlas project and open the deployed database cluster. Verify that the `bookstore.books` collection has a new `text_embedding` field containing a multi-dimensional vector.
 
-1. Navigate to the `search` tab to build a vector search index.
+1. Navigate to the _Atlas Search_ Tab and click on _Create Search Index_.
 
-1. Click 'Create new index' and select 'JSON'.
+1. Select _JSON Editor_ under Atlas Vector Search and then click on _Next_.
 
-1. Insert the following index definition and click 'Save'.
+1. Select the Database and Collection and then insert the following index definition and click 'Save'.
 
     ```json
     {
-        "mappings": {
-            "fields": {
-                "text_embedding": {
-                    "type": "knnVector",
-                    "dimensions": 768,
-                    "similarity": "euclidean"
-                }
-            }
+      "fields": [
+        {
+          "numDimensions": 768,
+          "path": "text_embedding",
+          "similarity": "euclidean",
+          "type": "vector"
         }
+      ]
     }
     ```
 
