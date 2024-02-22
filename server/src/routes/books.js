@@ -42,12 +42,12 @@ routes.route('/search').get(async (req, res) => {
   const embeddedSearchTerms = await createEmbedding(term);
   const records = await collection.aggregate([
     {
-      $search: {
-        knnBeta: {
-          vector: embeddedSearchTerms,
-          path: "text_embedding",
-          k: 20,
-        }
+      $vectorSearch: {
+        index: 'vector_index',
+        path: 'text_embedding',
+        queryVector: embeddedSearchTerms,
+        numCandidates: 20,
+        limit: 10
       }
     },
     {
