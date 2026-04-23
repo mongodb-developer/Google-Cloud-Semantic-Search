@@ -91,9 +91,9 @@ Follow the instructions below to run the demo locally.
 
 1. Go back to your MongoDB Atlas project and open the deployed database cluster. Verify that the `bookstore.books` collection has a new `text_embedding` field containing a multi-dimensional vector.
 
-1. Navigate to the _Atlas Search_ Tab and click on _Create Search Index_.
+1. Navigate to the _MongoDB Search_ Tab and click on _Create Search Index_.
 
-1. Select _JSON Editor_ under Atlas Vector Search and then click on _Next_.
+1. Select _JSON Editor_ under MongoDB Vector Search and then click on _Next_.
 
 1. Select the Database and Collection and then insert the following index definition and click 'Save'.
 
